@@ -21,7 +21,7 @@ const aesKeySize = 32
 //  )
 
 // 对明文进行填充 PKCS7Padding
-func padding(plainText []byte, blockSize int) []byte {
+func PKCS7Padding(plainText []byte, blockSize int) []byte {
 	//计算要填充的长度
 	n := blockSize - len(plainText)%blockSize
 	//对原来的明文填充n个n
@@ -31,7 +31,7 @@ func padding(plainText []byte, blockSize int) []byte {
 }
 
 // 对密文删除填充 PKCS7UnPadding
-func unPadding(cipherText []byte) []byte {
+func PKCS7UnPadding(cipherText []byte) []byte {
 	//取出密文最后一个字节end
 	end := cipherText[len(cipherText)-1]
 	//删除填充
@@ -48,7 +48,7 @@ func aesCbcEncrypt(plainText []byte, key []byte, iv string) []byte {
 		panic(err)
 	}
 	//进行填充
-	plainText = padding(plainText, block.BlockSize())
+	plainText = PKCS7Padding(plainText, block.BlockSize())
 	//指定初始向量vi,长度和block的块尺寸一致
 	ivByte := []byte(iv)
 	//指定分组模式，返回一个BlockMode接口对象
@@ -76,7 +76,7 @@ func aesCbcDecrypt(cipherText []byte, key []byte, iv string) []byte {
 	plainText := make([]byte, len(cipherText))
 	blockMode.CryptBlocks(plainText, cipherText)
 	//删除填充
-	plainText = unPadding(plainText)
+	plainText = PKCS7UnPadding(plainText)
 	return plainText
 }
 
