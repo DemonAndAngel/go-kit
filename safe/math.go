@@ -80,3 +80,7 @@ func AbsInt64ToUint64(v int64) (uint64, error) {
 	}
 	return uint64(v), nil
 }
+
+func ModInt64(a, b int64) int64 {
+	return a % b
+}
