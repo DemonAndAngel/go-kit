@@ -5,6 +5,15 @@ import (
 	"io"
 )
 
+func JsonMarshal(m interface{}) string {
+	byteData, _ := Marshal(m)
+	str := string(byteData)
+	if str == "null" {
+		str = ""
+	}
+	return str
+}
+
 func Marshal(m any) ([]byte, error) {
 	return json.Marshal(m)
 }
