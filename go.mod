@@ -10,7 +10,7 @@ require (
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/spf13/viper v1.21.0
 	github.com/tjfoc/gmsm v1.4.1
-	gorm.io/gorm v1.31.1
+	gorm.io/gorm v1.25.1
 )
 
 require (
