@@ -1,8 +1,7 @@
 package crypt
 
 import (
-	"encoding/base64"
-
+	"encoding/hex"
 	"github.com/tjfoc/gmsm/sm4"
 )
 
@@ -20,11 +19,11 @@ func (s *SM4) Encrypt(plainText string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	return base64.StdEncoding.EncodeToString(en), nil
+	return hex.EncodeToString(en), nil
 }
 
 func (s *SM4) Decrypt(cipherText string) (string, error) {
-	enB, err := base64.StdEncoding.DecodeString(cipherText)
+	enB, err := hex.DecodeString(cipherText)
 	if err != nil {
 		return "", err
 	}
