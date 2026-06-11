@@ -8,14 +8,15 @@ import (
 	"encoding/hex"
 	"errors"
 	"fmt"
-	"github.com/DemonAndAngel/go-kit/fjpostapi/suppliers/crypt"
-	"github.com/DemonAndAngel/go-kit/json"
 	"io"
 	"net/http"
 	"net/url"
 	"os"
 	"strings"
 	"time"
+
+	"github.com/DemonAndAngel/go-kit/fjpostapi/suppliers/crypt"
+	"github.com/DemonAndAngel/go-kit/json"
 
 	redis "github.com/go-redis/redis/v8"
 	"github.com/spf13/viper"
@@ -34,11 +35,11 @@ type SuppliersClient struct {
 }
 
 func NewSupplierClient(supplier string, rdc *redis.Client) (*SuppliersClient, error) {
-	switch supplier {
-	case Supplier_Type_YiDian, Supplier_Type_WeiNa:
-	default:
-		return nil, fmt.Errorf("supplier %s is not supported", supplier)
-	}
+	//switch supplier {
+	//case Supplier_Type_YiDian, Supplier_Type_WeiNa:
+	//default:
+	//	return nil, fmt.Errorf("supplier %s is not supported", supplier)
+	//}
 
 	configPrefix := fmt.Sprintf("appConfig.fjpostapi.supplier.%s", strings.ToLower(supplier))
 	cfg := &SupplierConfig{
